@@ -2,6 +2,7 @@ body {
     padding: 30px;
     font-family: "Roboto", serif;
     color: #585858;
+    background-color: #eee;
 }
 
 header {
@@ -11,7 +12,60 @@ header {
 header h1 {
     padding-top: 30px;
     text-transform: uppercase;
-    font-size: 18px;
+    font-size: 19px;
     letter-spacing: 1.5px;
     font-weight: 500;
 }
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px;
+}
+
+.card {
+    display: flex;
+    gap: 10px;
+    border: solid 2px #dbdbdb;
+    padding: 20px;
+    border-radius: 5px;
+    background-color: #fffefe;
+}
+
+.avatar {
+   border-radius: 50%;
+   vertical-align: middle;
+   margin: auto;
+}
+
+.name, .email, .address {
+    margin-bottom: 0;
+    margin-top: 5px;
+}
+
+.name {
+    font-size: 18px;
+}
+
+.text-container {
+    vertical-align: middle;
+    margin: auto;
+}
+
+
+@media (min-width: 768px) {
+    .grid-container {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (min-width: 1024px) {
+    body {
+        max-width: 1300px;
+        margin: auto;
+    }
+    .grid-container {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}
+
