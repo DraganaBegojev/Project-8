@@ -73,15 +73,35 @@ header h1 {
     border-radius: 5px;
     padding: 30px 20px;
 }
-.modal-close {
+.modal-close, .modal-prev, .modal-next {
     position: absolute;
-    right: 15px;
-    top: 5px;
     cursor: pointer;
+    opacity: 0.3;
+    width: 30px;
+    height: 30px;
+    border-radius: 5px;
 }
+.modal-close{
+    right: 10px;
+    top: 10px; 
+}
+.modal-prev{
+    left: 10px;
+    bottom: 10px; 
+}
+.modal-next{
+    right: 10px;
+    bottom: 10px; 
+}
+.modal-close:hover, .modal-next:hover, .modal-prev:hover {
+    opacity: 1;
+}
+
 .hidden {
     display: none;
 }
+
+
     
 
 /* Tablet */
