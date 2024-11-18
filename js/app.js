@@ -62,14 +62,20 @@ function displayModal(index) {
         <p class="address">${city}</p>
         <hr />
         <p>${phone}</p>
-        <p class="address">${street}, ${state} ${postcode}</p>
+        <p class="address">${street.name} ${street.number}, ${state} ${postcode}</p>
         <p>Birthday:
         ${date.getMonth()}/${date.getDate()}/${date.getFullYear()}</p>
         </div>
+        <button class="modal-prev"><</button>
+        <button class="modal-next">></button>
         `;
 
     overlay.classList.remove("hidden");
     modalContainer.innerHTML = modalHTML;
+
+    // Add event listeners for navigation buttons
+    document.querySelector(".modal-prev").addEventListener("click", () => navigateModal(index - 1));
+    document.querySelector(".modal-next").addEventListener("click", () => navigateModal(index + 1));
 }
 
 // open modal
@@ -88,6 +94,16 @@ modalClose.addEventListener('click', () => {
     overlay.classList.add("hidden");
 });
 
+// navigate modal
+
+function navigateModal(index) {
+    if (index < 0) {
+        index = employees.length - 1; // Wrap around to the last employee
+    } else if (index >= employees.length) {
+        index = 0; // Wrap around to the first employee
+    }
+    displayModal(index);
+}
 
     
     
