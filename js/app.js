@@ -104,6 +104,3 @@ function navigateModal(index) {
     }
     displayModal(index);
 }
-
-    
-    
