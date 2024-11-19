@@ -32,26 +32,28 @@ header h1 {
 .grid-container {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 30px;
+    gap: 20px;
 }
 
 .card {
-    gap: 10px;
     border: solid 2px #dbdbdb;
     padding: 20px;
     border-radius: 5px;
     background-color: #fffefe;
+    gap: 20px;
+    text-align: center;
 }
 
 .avatar {
    border-radius: 50%;
-   vertical-align: middle;
-   margin: auto;
+   width: 80px;
+   height: 80px;
 }
 
 .name, .email, .address {
     margin-bottom: 0;
     margin-top: 5px;
+    font-size: 13px;
 }
 
 .name {
@@ -59,8 +61,7 @@ header h1 {
 }
 
 .text-container {
-    vertical-align: middle;
-    margin: auto;
+    margin-top: 10px;
 }
 
 /* Modal window */
@@ -115,11 +116,16 @@ header h1 {
 /* Tablet */
 
 @media (min-width: 768px) {
+    body {
+        max-width: 1000px;
+        margin: auto;
+    }
     .grid-container {
         grid-template-columns: 1fr 1fr;
     }
     .card {
         display: flex;
+        text-align: left;
     }
 
     header {
@@ -135,16 +141,19 @@ header h1 {
         position: initial;
         padding: 20px;
     }
-    
+    .avatar {
+        vertical-align: middle;
+     }
+     .text-container {
+        margin-top: auto;
+        margin-bottom: auto;
+    }
+     
 }
 
 /* Desktop */
 
 @media (min-width: 1024px) {
-    body {
-        max-width: 1300px;
-        margin: auto;
-    }
     .grid-container {
         grid-template-columns: 1fr 1fr 1fr;
     }
