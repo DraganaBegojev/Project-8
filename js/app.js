@@ -1,106 +1,105 @@
-//global variables
-
+// Global Variables
 let employees = [];
-const urlAPI = `https://randomuser.me/api/?results=12&inc=name, picture, email, location, phone, dob &noinfo &nat=US`
+let filteredEmployees = []; // To store filtered employees
+const urlAPI = `https://randomuser.me/api/?results=12&inc=name, picture, email, location, phone, dob &noinfo &nat=US`;
 const gridContainer = document.querySelector(".grid-container");
 const overlay = document.querySelector(".overlay");
 const modalContainer = document.querySelector(".modal-content");
 const modalClose = document.querySelector(".modal-close");
 
-// fetch data from API
-
+// Fetch Data from API
 fetch(urlAPI)
-    .then(res => {
-        if (!res.ok) {
-            throw new Error(`HTTP error! status: ${res.status}`);
-        }
-        return res.json();
+    .then(res => res.json())
+    .then(data => {
+        employees = data.results;
+        displayEmployees(employees);
     })
-    .then(res => {
-        console.log(res); // Log full response to examine its structure
-        return res.results; // Extract and return the "results" array
-    })
-    .then(displayEmployees) // Pass data to the displayEmployees function
     .catch(err => console.error("Error fetching data:", err));
 
-// Function to display employees cards
-
-function displayEmployees(employeeData) {
-    employees = employeeData;
+// Function to Display Employees
+function displayEmployees(employeeList) {
     let employeeHTML = '';
-    employees.forEach((employee, index) => {
-        let name = employee.name;
-        let email = employee.email;
-        let city = employee.location.city;
-        let picture = employee.picture;
-    employeeHTML += `
-        <div class="card" data-index="${index}">
-            <img class="avatar" src="${picture.large}" />
-            <div class="text-container">
-                <h2 class="name">${name.first} ${name.last}</h2>
-                <p class="email">${email}</p>
-                <p class="address">${city}</p>
+    employeeList.forEach((employee, index) => {
+        const { name, email, location, picture } = employee;
+        employeeHTML += `
+            <div class="card" data-index="${index}">
+                <img class="avatar" src="${picture.large}" />
+                <div class="text-container">
+                    <h2 class="name">${name.first} ${name.last}</h2>
+                    <p class="email">${email}</p>
+                    <p class="address">${location.city}</p>
+                </div>
             </div>
-        </div>
-    `
-});
+        `;
+    });
     gridContainer.innerHTML = employeeHTML;
+
+    // Add Event Listener for Cards
+    const cards = document.querySelectorAll(".card");
+    cards.forEach(card => {
+        card.addEventListener("click", e => {
+            const index = parseInt(card.getAttribute("data-index"));
+            displayModal(employeeList, index); // Pass current list (original or filtered)
+        });
+    });
 }
 
-// Function to display modal
+// Function to Display Modal
+function displayModal(employeeList, index) {
+    const { name, dob, phone, email, location, picture } = employeeList[index];
+    const date = new Date(dob.date);
 
-function displayModal(index) {
-    let { name, dob, phone, email, location: { city, street, state, postcode}, picture } = employees[index];
-    
-    let date = new Date(dob.date);
-    
     const modalHTML = `
         <img class="avatar" src="${picture.large}" />
         <div class="text-container">
-        <h2 class="name">${name.first} ${name.last}</h2>
-        <p class="email">${email}</p>
-        <p class="address">${city}</p>
-        <hr />
-        <p>${phone}</p>
-        <p class="address">${street.name} ${street.number}, ${state} ${postcode}</p>
-        <p>Birthday:
-        ${date.getMonth()}/${date.getDate()}/${date.getFullYear()}</p>
+            <h2 class="name">${name.first} ${name.last}</h2>
+            <p class="email">${email}</p>
+            <p class="address">${location.city}</p>
+            <hr />
+            <p>${phone}</p>
+            <p class="address">${location.street.number} ${location.street.name}, ${location.state} ${location.postcode}</p>
+            <p>Birthday: ${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}</p>
         </div>
         <button class="modal-prev"><</button>
         <button class="modal-next">></button>
-        `;
+    `;
 
     overlay.classList.remove("hidden");
     modalContainer.innerHTML = modalHTML;
 
-    // Add event listeners for navigation buttons
-    document.querySelector(".modal-prev").addEventListener("click", () => navigateModal(index - 1));
-    document.querySelector(".modal-next").addEventListener("click", () => navigateModal(index + 1));
+    // Add Event Listeners for Navigation
+    document.querySelector(".modal-prev").addEventListener("click", () => navigateModal(employeeList, index - 1));
+    document.querySelector(".modal-next").addEventListener("click", () => navigateModal(employeeList, index + 1));
 }
 
-// open modal
-
-gridContainer.addEventListener('click', e => {
-    if (e.target !== gridContainer) {
-        const card = e.target.closest(".card");
-        const index = card.getAttribute('data-index');
-        displayModal(index);
-    }
-});
-
-// close modal
-
-modalClose.addEventListener('click', () => {
+// Close Modal
+modalClose.addEventListener("click", () => {
     overlay.classList.add("hidden");
 });
 
-// navigate modal
-
-function navigateModal(index) {
+// Navigate Modal
+function navigateModal(employeeList, index) {
     if (index < 0) {
-        index = employees.length - 1; // Wrap around to the last employee
-    } else if (index >= employees.length) {
-        index = 0; // Wrap around to the first employee
+        index = employeeList.length - 1; // Wrap to last
+    } else if (index >= employeeList.length) {
+        index = 0; // Wrap to first
     }
-    displayModal(index);
+    displayModal(employeeList, index);
 }
+
+// Search Bar
+const searchBar = document.getElementById("search-bar");
+searchBar.addEventListener("input", e => {
+    const searchTerm = e.target.value.toLowerCase();
+
+    if (searchTerm === "") {
+        filteredEmployees = [];
+        displayEmployees(employees); // Show original list
+    } else {
+        filteredEmployees = employees.filter(employee => {
+            const fullName = `${employee.name.first.toLowerCase()} ${employee.name.last.toLowerCase()}`;
+            return fullName.includes(searchTerm);
+        });
+        displayEmployees(filteredEmployees); // Show filtered list
+    }
+});
