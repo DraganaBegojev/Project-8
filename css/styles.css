@@ -116,10 +116,6 @@ header h1 {
 /* Tablet */
 
 @media (min-width: 768px) {
-    body {
-        max-width: 1000px;
-        margin: auto;
-    }
     .grid-container {
         grid-template-columns: 1fr 1fr;
     }
@@ -154,6 +150,10 @@ header h1 {
 /* Desktop */
 
 @media (min-width: 1024px) {
+    body {
+        max-width: 1200px;
+        margin: auto;
+    }
     .grid-container {
         grid-template-columns: 1fr 1fr 1fr;
     }

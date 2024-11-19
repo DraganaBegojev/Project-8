@@ -56,9 +56,9 @@ function displayModal(employeeList, index) {
             <p class="email">${email}</p>
             <p class="address">${location.city}</p>
             <hr />
-            <p>${phone}</p>
+            <p class="address">${phone}</p>
             <p class="address">${location.street.number} ${location.street.name}, ${location.state} ${location.postcode}</p>
-            <p>Birthday: ${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}</p>
+            <p class="address">Birthday: ${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}</p>
         </div>
         <button class="modal-prev"><</button>
         <button class="modal-next">></button>
