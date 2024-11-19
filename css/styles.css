@@ -10,6 +10,17 @@ header {
     height: 100px;
 }
 
+input#search-bar {
+    border: solid 1px #dbdbdb;
+    border-radius: 5px;
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    left: 30px;
+    width: auto;
+    padding: 5px 10px;
+}
+
 header h1 {
     padding-top: 30px;
     text-transform: uppercase;
@@ -25,7 +36,6 @@ header h1 {
 }
 
 .card {
-    display: flex;
     gap: 10px;
     border: solid 2px #dbdbdb;
     padding: 20px;
@@ -108,6 +118,24 @@ header h1 {
     .grid-container {
         grid-template-columns: 1fr 1fr;
     }
+    .card {
+        display: flex;
+    }
+
+    header {
+        height: 100px;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    input#search-bar {
+        width: 200px;
+        height: 10px;
+        align-self: center;
+        position: initial;
+        padding: 20px;
+    }
+    
 }
 
 /* Desktop */
