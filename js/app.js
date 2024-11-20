@@ -74,16 +74,28 @@ function displayModal(employeeList, index) {
 
 // Close Modal
 
+function closeModal() {
+    if (!overlay.classList.contains("hidden")) {
+        overlay.classList.add("hidden");
+    }
+}
+
 // Close Modal when clicking the close button
-modalClose.addEventListener("click", () => {
-    overlay.classList.add("hidden");
-});
+modalClose.addEventListener("click", closeModal);
+
 // Close Modal when clicking outside modal content
 overlay.addEventListener("click", (e) => {
     if(e.target === overlay) {
-        overlay.classList.add("hidden");
+        closeModal();
     }
-})
+});
+
+// Close Modal with Esckey
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        closeModal();
+    }
+});
 
 // Navigate Modal
 function navigateModal(employeeList, index) {
