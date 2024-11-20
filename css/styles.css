@@ -37,27 +37,33 @@ header h1 {
 
 .card {
     border: solid 2px #dbdbdb;
-    padding: 20px;
+    padding: 30px 10px;
     border-radius: 5px;
     background-color: #fffefe;
-    gap: 20px;
     text-align: center;
+    gap: 10px;
 }
 
 .avatar {
    border-radius: 50%;
-   width: 80px;
-   height: 80px;
+   width: 95px;
+   height: 95px;
 }
 
+
 .name, .email, .address {
-    margin-bottom: 0;
+    margin-bottom: 5px;
     margin-top: 5px;
     font-size: 13px;
 }
 
+.email, .address {
+    color: #a0a0a0;
+}
+
 .name {
     font-size: 18px;
+    padding-bottom: 3px;
 }
 
 .text-container {
@@ -72,14 +78,14 @@ header h1 {
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(100, 100, 100, 0.4)
+    background-color: rgba(100, 100, 100, 0.4);
 }
 .modal {
     width: 375px;
     margin: 15% auto auto;
     position: relative;
     text-align: center;
-    background: #fff;
+    background-color: #fff;
     border: 1px solid #778;
     border-radius: 5px;
     padding: 30px 20px;
@@ -112,6 +118,33 @@ header h1 {
     display: none;
 }
 
+.modal .avatar {
+    width: 140px;
+    height: 140px;
+}
+
+.modal .text-container p:nth-child(3){
+    padding-top: 7px;
+    padding-bottom: 20px;
+}
+
+.modal .name {
+    padding-top: 15px;
+} 
+
+.modal .address{
+    padding-top: 7px;
+    padding-bottom: 7px;
+} 
+.modal .text-container p:nth-child(5) {
+    padding-top: 20px;
+}
+
+hr {
+    background-color: rgb(222, 222, 222); 
+    border: none;          
+    height: 1px;
+  }
 
 /* Tablet */
 
