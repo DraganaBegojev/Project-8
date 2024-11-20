@@ -3,7 +3,7 @@ body {
     font-family: "Roboto", serif;
     color: #585858;
     background-color: #eee;
-    position: relative;
+    position: static;
 }
 
 header {
