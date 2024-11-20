@@ -73,9 +73,17 @@ function displayModal(employeeList, index) {
 }
 
 // Close Modal
+
+// Close Modal when clicking the close button
 modalClose.addEventListener("click", () => {
     overlay.classList.add("hidden");
 });
+// Close Modal when clicking outside modal content
+overlay.addEventListener("click", (e) => {
+    if(e.target === overlay) {
+        overlay.classList.add("hidden");
+    }
+})
 
 // Navigate Modal
 function navigateModal(employeeList, index) {
