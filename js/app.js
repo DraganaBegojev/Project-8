@@ -90,7 +90,7 @@ overlay.addEventListener("click", (e) => {
     }
 });
 
-// Close Modal with Esckey
+// Close Modal with the Escape key
 document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
         closeModal();
