@@ -73,44 +73,56 @@ header h1 {
 /* Modal window */
 
 .overlay {
-    position: absolute;
+    position: fixed; /* Ensure overlay and modal stay in view */
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
     background-color: rgba(100, 100, 100, 0.4);
+    display: flex; /* Use flexbox for centering */
+    justify-content: center;
+    align-items: center;
 }
+
 .modal {
-    width: 375px;
-    margin: 15% auto auto;
+    width: 90%; /* Make modal responsive */
+    max-width: 375px; /* Restrict max width */
     position: relative;
     text-align: center;
     background-color: #fff;
     border: 1px solid #778;
     border-radius: 5px;
-    padding: 30px 20px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Add a shadow for better visibility */
+    overflow: auto; /* Prevent content overflow */
+    max-height: 90%; /* Ensure modal fits within the viewport */
 }
+
 .modal-close, .modal-prev, .modal-next {
     position: absolute;
     cursor: pointer;
-    opacity: 0.3;
+    opacity: 0.5;
     width: 30px;
     height: 30px;
     border-radius: 5px;
 }
-.modal-close{
+
+.modal-close {
+    top: 10px;
     right: 10px;
-    top: 10px; 
 }
-.modal-prev{
+
+.modal-prev {
+    bottom: 10px;
     left: 10px;
-    bottom: 10px; 
 }
-.modal-next{
+
+.modal-next {
+    bottom: 10px;
     right: 10px;
-    bottom: 10px; 
 }
-.modal-close:hover, .modal-next:hover, .modal-prev:hover {
+
+.modal-close:hover, .modal-prev:hover, .modal-next:hover {
     opacity: 1;
 }
 
